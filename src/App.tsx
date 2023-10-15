@@ -6,13 +6,19 @@ function App() {
   const [output, setOutput] = useState("")
   const [error, setError] = useState(false)
 
-  const [memory, setMemory] = useState(-1)
-  const [input, setInput] = useState("")
+  const [memory, setMemory] = useState(10000)
+  const [input, setInput] = useState("false")
   const [code, setCode] = useState("")
 
   function handleMemChange(e: React.ChangeEvent<HTMLInputElement>) {
+    if (e.target.value == "") {
+      setMemory(10000)
+      return
+    }
     let value = parseInt(e.target.value)
     if (isNaN(value)) {
+      setMemory(-1)
+    } else if (value < 0) {
       setMemory(-1)
     } else {
       setMemory(value)
@@ -20,7 +26,11 @@ function App() {
   }
 
   function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setInput(e.target.value)
+    if (e.target.value == "") {
+      setInput("false")
+    } else {
+      setInput(e.target.value)
+    }
   }
 
   function handleCodeChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -53,27 +63,26 @@ function App() {
     } else {
       setInvalid(false)
     }
-  }, [memory, input, code])
+  }, [memory, code])
 
   return (
-    <div className="w-screen h-screen bg-cyan-800 text-white">
+    <div className="w-screen min-h-screen h-fit overflow-x-hidden bg-cyan-800 text-white">
       <div className="mx-auto w-3/4 max-w-4xl">
         <h1 className="uppercase p-2 text-3xl font-bold text-center">Custom Language Client</h1>
         <form className="bg-cyan-700 rounded-md p-4 shadow-lg" onSubmit={handleSubmit}>
           <div className="flex my-2 h-6">
             <label className="my-auto" htmlFor="memory">Memory:</label>
-            <input className="my-auto text-black px-2 ml-4 w-full rounded border" onChange={handleMemChange} type="text" id="memory" name="memory"/>
+            <input placeholder="10000" className="my-auto text-black px-2 ml-4 w-full rounded border" onChange={handleMemChange} type="text" id="memory" name="memory"/>
           </div>
           {memory == -1 && <p className="text-red-600 text-sm">Invalid Memory</p>}
 
           <div className="flex my-2 h-6">
             <label className="my-auto" htmlFor="input">Input:</label>
-            <input className="my-auto text-black px-2 ml-4 w-full rounded border" onChange={handleInputChange} type="text" id="input" name="input" />
+            <input placeholder="false" className="my-auto text-black px-2 ml-4 w-full rounded border" onChange={handleInputChange} type="text" id="input" name="input" />
           </div>
 
           <label htmlFor="code">Code:</label>
           <textarea className="whitespace-nowrap text-black font-mono my-2 p-2 h-96 w-full rounded border" onChange={handleCodeChange} id="code" name="code" />
-          {code == "" && <p className="text-red-600 text-sm">Invalid Code</p>}
 
           <div className="flex justify-center">
             <button disabled={invalid} className={invalid ? "bg-slate-200 p-2 border rounded" : "hover:bg-cyan-900 p-2 border rounded"} type="submit"> Submit </button>
