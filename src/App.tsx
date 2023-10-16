@@ -42,7 +42,7 @@ function App() {
     setError(false)
     setOutput("loading...")
     try {
-      let res = await axios.post('http://localhost:8080/compile', {
+      let res = await axios.post("https://custom-language-server.fly.dev/", {
         memory: memory,
         input: input,
         code: code
