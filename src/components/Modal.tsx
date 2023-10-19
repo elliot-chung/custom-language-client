@@ -31,9 +31,9 @@ function Modal ({ isOpen, onClose }: ModalProps) {
       | (vec-get <expr> <expr>)
       | (vec-set! <expr> <expr> <expr>)
       | (vec-len <expr>)
-      | (<name> <expr>*)
-    optionally:
-      | (snek-<name> <expr>*)
+      | (<fun-name> <expr>*)
+      | (snek-printheap)
+      | (snek-printstack)
     
     <op1> := add1 | sub1 | isnum | isbool | isvec | print
     <op2> := + | - | * | / | < | > | >= | <= | =
