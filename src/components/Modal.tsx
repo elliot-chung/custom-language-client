@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from "react";
 
 interface ModalProps {
-    isOpen: boolean
-    onClose?: () => void
+  isOpen: boolean;
+  onClose?: () => void;
 }
 
-function Modal ({ isOpen, onClose }: ModalProps) {
-    const [open, setOpen] = useState(isOpen)
+function Modal({ isOpen, onClose }: ModalProps) {
+  const [open, setOpen] = useState(isOpen);
 
-    const textContent = `<prog> := <defn>* <expr>
+  const textContent = `<prog> := <defn>* <expr>
     <defn> := (fun (<name> <name>*) <expr>)
     <expr> :=
       | <number>
@@ -38,39 +38,48 @@ function Modal ({ isOpen, onClose }: ModalProps) {
     <op1> := add1 | sub1 | isnum | isbool | isvec | print
     <op2> := + | - | * | / | < | > | >= | <= | =
     
-    <binding> := (<identifier> <expr>)`
+    <binding> := (<identifier> <expr>)`;
 
-    useEffect(() => {
-        setOpen(isOpen)
-    }, [isOpen])
+  useEffect(() => {
+    setOpen(isOpen);
+  }, [isOpen]);
 
-    const handleClose = () => {
-        setOpen(false)
-        if (onClose) {
-            onClose()
-        }
+  const handleClose = () => {
+    setOpen(false);
+    if (onClose) {
+      onClose();
     }
+  };
 
-    const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
-        if (e.key === "Escape") {
-            handleClose()
-        }
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    if (e.key === "Escape") {
+      handleClose();
     }
+  };
 
-    return (
-        open &&
-        <div className="bg-black bg-opacity-40 fixed inset-0">
-            <div className="bg-white bg-opacity-100 h-fit w-1/2 min-w-fit mx-auto my-10 rounded-lg" onKeyDown={handleKeyDown}>
-                <div className="flex flex-row-reverse">
-                    <button className="bg-red-600 text-white hover:bg-red-500 h-6 w-6 m-2 border rounded text-center" onClick={handleClose}>X</button>
-                </div>
-                <h1 className=" font-medium text-center text-black text-bold text-2xl">Quickstart</h1> 
-                <div className="text-black font-mono whitespace-pre-wrap p-10">
-                    {textContent}
-                </div>
-            </div> 
+  return (
+    open && (
+      <div className="bg-black bg-opacity-40 fixed inset-0">
+        <div
+          className="bg-white relative bg-opacity-100 h-3/4 max-h-[40rem] overflow-scroll w-fit max-w-[95%] mx-auto my-10 rounded-lg"
+          onKeyDown={handleKeyDown}
+        >
+          <button
+            className="bg-red-600 absolute top-0 right-0 text-white hover:bg-red-500 h-6 w-6 m-2 border rounded text-center"
+            onClick={handleClose}
+          >
+            X
+          </button>
+          <h1 className="font-medium text-center text-black text-bold text-xl m-4">
+            Quickstart
+          </h1>
+          <div className="text-black text-xs sm:px-4 md:px-8 sm:text-sm md:text-base font-mono whitespace-pre overflow-scroll px-2 pb-5">
+            {textContent}
+          </div>
         </div>
+      </div>
     )
+  );
 }
 
-export default Modal
+export default Modal;
