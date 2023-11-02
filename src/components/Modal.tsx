@@ -61,7 +61,7 @@ function Modal({ isOpen, onClose }: ModalProps) {
     open && (
       <div className="bg-black bg-opacity-40 fixed inset-0">
         <div
-          className="bg-white relative bg-opacity-100 h-5/6 max-h-[55rem] w-fit max-w-[95%] mx-auto mt-10 rounded-lg"
+          className="bg-white relative bg-opacity-100 h-5/6 max-h-[55rem] w-fit max-w-[95%] overflow-y-auto overflow-x-hidden mx-auto mt-10 rounded-lg"
           onKeyDown={handleKeyDown}
         >
           <button
@@ -73,9 +73,17 @@ function Modal({ isOpen, onClose }: ModalProps) {
           <h1 className="font-medium text-center text-black text-bold text-xl m-4">
             Quickstart
           </h1>
-          <div className="text-black max-h-[90%] rounded-lg text-xs sm:px-4 md:px-8 sm:text-sm md:text-base font-mono overflow-auto whitespace-pre px-2 pb-5">
+          <div className=" bg-slate-100 mr-6 ml-2 md:mx-4 text-black max-h-[90%] overflow-y-visible overflow-x-auto rounded-lg text-xs sm:px-4 md:px-8 sm:text-sm md:text-base font-mono whitespace-pre px-2 pb-5">
             {textContent}
           </div>
+          <a
+            href="https://github.com/ec-2018/custom-language-client#writing-to-vectors"
+            target="_blank"
+            rel="noreferrer"
+            className=" text-blue-600 underline text-xs md:text-sm px-6"
+          >
+            (More Info)
+          </a>
         </div>
       </div>
     )
