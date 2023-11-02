@@ -25,13 +25,13 @@ function Modal({ isOpen, onClose }: ModalProps) {
       | (block <expr>+)
       | (loop <expr>)
       | (break <expr>)
-      | (gc)
       | (vec <expr>*)
       | (make-vec <expr> <expr>)
       | (vec-get <expr> <expr>)
       | (vec-set! <expr> <expr> <expr>)
       | (vec-len <expr>)
       | (<fun-name> <expr>*)
+      | (gc)
       | (snek-printheap)
       | (snek-printstack)
     
@@ -61,7 +61,7 @@ function Modal({ isOpen, onClose }: ModalProps) {
     open && (
       <div className="bg-black bg-opacity-40 fixed inset-0">
         <div
-          className="bg-white relative bg-opacity-100 h-3/4 max-h-[40rem] w-fit max-w-[95%] mx-auto mt-10 rounded-lg"
+          className="bg-white relative bg-opacity-100 h-5/6 max-h-[55rem] w-fit max-w-[95%] mx-auto mt-10 rounded-lg"
           onKeyDown={handleKeyDown}
         >
           <button
@@ -73,7 +73,7 @@ function Modal({ isOpen, onClose }: ModalProps) {
           <h1 className="font-medium text-center text-black text-bold text-xl m-4">
             Quickstart
           </h1>
-          <div className="text-black max-h-[90%] rounded-lg text-xs sm:px-4 md:px-8 sm:text-sm md:text-base font-mono overflow-y-scroll whitespace-pre px-2 pb-5">
+          <div className="text-black max-h-[90%] rounded-lg text-xs sm:px-4 md:px-8 sm:text-sm md:text-base font-mono overflow-auto whitespace-pre px-2 pb-5">
             {textContent}
           </div>
         </div>
