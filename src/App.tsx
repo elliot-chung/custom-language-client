@@ -183,7 +183,7 @@ function App() {
             </button>
             <div
               className={`flex flex-col md:flex-row w-full justify-evenly md:flex ${
-                enableDropdown ? "hidden" : "flex"
+                enableDropdown ? "flex" : "hidden"
               }`}
             >
               <button
