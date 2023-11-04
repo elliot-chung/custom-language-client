@@ -2,7 +2,7 @@
 
 # Overview
 
-This is a React app that allows the user to write programs in a custom programming language I wrote for a university compilers course. The web app communicates with a backend server that compiles the instructions written in the text area.
+This is a React app that allows the user to write programs in a custom programming language I wrote for a university compilers course. The web app communicates with a backend server that compiles the instructions written in the text area. The repository for that server can be found [here](https://github.com/ec-2018/custom-language-server).
 
 # Language Specifics
 
